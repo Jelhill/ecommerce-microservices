@@ -14,5 +14,5 @@ const PORT = process.env.PORT || 4000
 
 
 app.listen(PORT, function() {
-    console.log("Server started on port " + PORT)
+    console.log("customer-service server started on port " + PORT)
 })

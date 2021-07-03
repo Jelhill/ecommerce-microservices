@@ -1,6 +1,8 @@
 import orderSchema from "../model/orders.js"
 import axios from "axios"
-const PAYMENT_SERVICE_URL = "http://localhost:5000/api/payment"
+import  services from "../utils/constants.js"
+const { paymentService, orderService, productService, customerService} = services
+const PAYMENT_SERVICE_URL = `http://${paymentService.HOST}:${paymentService.PORT}/api/payment`
 
 /**
  * Order constructor

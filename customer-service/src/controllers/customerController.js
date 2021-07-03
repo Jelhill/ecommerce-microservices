@@ -1,8 +1,9 @@
 import axios from "axios"
-import keys from "../config/keys.js"
 import CustomerSchema from "../models/customers.js"
-const ORDER_API_ENDPOINT = "http://localhost:3001/api/order"
-const PRODUCT_API_ENDPOINT = "http://localhost:5001/api/product"
+import  services from "../utils/constants.js"
+const { orderService, productService } = services
+const ORDER_API_ENDPOINT = `http://${orderService.HOST}:${orderService.PORT}/api/order`
+const PRODUCT_API_ENDPOINT = `http://${productService.HOST}:${productService.PORT}/api/product`
 
 function getCustomerId() {
     return CustomerSchema.findOne({})
@@ -12,16 +13,20 @@ function getCustomerId() {
 }
 
 function getProductId(index) {
-    return axios.get(`${PRODUCT_API_ENDPOINT}/getProducts` )
-    .then((resp) => resp.data[index])
-    .catch((err) => err)
+    return axios.get(`${PRODUCT_API_ENDPOINT}/getProducts`)
+    .then((resp) => {
+        console.log("Resp", resp)
+        return resp.data[index]})
+    .catch((err) => {
+        console.log("Error ooo", err)
+        return err})
 }
 
 
-export async function sendOrder(req, res) {
-    const customerId = await getCustomerId()
-    const { _id, amount } = await getProductId(0)
 
+export async function sendOrder(req, res) {
+    const customerId = await getCustomerId();
+    const { _id, amount } = await getProductId(1);
     const order = {
         customerId, 
         productId: _id,
