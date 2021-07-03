@@ -1,6 +1,7 @@
 import axios from "axios"
 import CustomerSchema from "../models/customers.js"
 import  services from "../utils/constants.js"
+import { customer, products } from "../data/hardcoded.js"
 const { orderService, productService } = services
 const ORDER_API_ENDPOINT = `http://${orderService.HOST}:${orderService.PORT}/api/order`
 const PRODUCT_API_ENDPOINT = `http://${productService.HOST}:${productService.PORT}/api/product`
@@ -28,13 +29,29 @@ function getProductId(index) {
 
 //This function will send the customer order to the order-service
 export async function sendOrder(req, res) {
+
+    const order = {}
+
     const customerId = await getCustomerId(); //Retrieve Customer Id
     const { _id, amount } = await getProductId(1); //Retrieve Product ID
-    const order = {
-        customerId, 
-        productId: _id,
-        amount
+
+    console.log("Cus", customer)
+    console.log("Opro", products)
+
+    if(!customerId || !_id || amount ) {
+        order = {
+            customerId: customer._id,
+            productId: products[1]._id,
+            amount: products[1].amount
+        }
+    }else {
+        order = {
+            customerId, 
+            productId: _id,
+            amount
+        }
     }
+    
 
     axios.post(`${ORDER_API_ENDPOINT}/receiveOrder`, order, )
     .then((resp) => res.status(200).json(resp.data))
