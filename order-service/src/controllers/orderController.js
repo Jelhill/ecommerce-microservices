@@ -1,7 +1,7 @@
 import orderSchema from "../model/orders.js"
 import axios from "axios"
 import  services from "../utils/constants.js"
-const { paymentService, orderService, productService, customerService} = services
+const { paymentService } = services
 const PAYMENT_SERVICE_URL = `http://${paymentService.HOST}:${paymentService.PORT}/api/payment`
 
 /**

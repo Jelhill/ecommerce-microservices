@@ -1,6 +1,9 @@
 import rabbitMQ from "./rabbitMq.js"
 import { saveToTransactionDatabaseWorker  } from "../worker/updateTransactionDb.js";
 
+/**
+ * This function checkes for the queue and based on the queue perforem the necessary requiremet
+ */
 export const publishChannel =  (queue, payload) => {
 	return new Promise(async (resolve, reject) => {
 
@@ -10,6 +13,8 @@ export const publishChannel =  (queue, payload) => {
 			persistent: true,
 		});
 		
+		//Since the queue is transaction
+		//the queue is passed as an argument to the worker function which in turn saves the data to the Transaction DB
 		if(queue === "transaction") {
 			try {
 				if(submitQueue) {

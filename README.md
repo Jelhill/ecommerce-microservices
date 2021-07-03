@@ -12,11 +12,22 @@ The below are the 4 (four) services and they are hosted on a single github repos
     # product-service
 
 The customer service and product services has a seeded folder that seeds a single customer and two products respectfully to the database. to run this seeders Go to their services and type:
-
     # npm run seeder
+    this should be done directly on local host. 
 
-To run each service:
+To run Application,
+    Pull Command: git clone https://github.com/Jelhill/ecommerce-microservices
+    build: docker-compose up --build 
 
-    # First, npm install 
-    # npm run dev to run the development branch.
+To Test Application:
+    from postman, just trigget the customer endpoint with the below
+        endpoint: http://localhost:4000/api/customer/sendOrder
+        method: GET
+
+To Connect MongoDB    
+    From each of the services, create a .env file and pass in the MongoDB connection string as seen below. 
+    The string must have a valid username and password.
+    refer to .env.example file for usage in .env file
+
+    MONGO_URI=mongodb+srv://<username>:<password>@cluster0.dfckv.mongodb.net/Youverify?retryWrites=true&w=majority
 

@@ -15,7 +15,6 @@ export const consumerChannel = (queue) => {
                     channel.ack(payload);
                 } catch (error) {
                     reject({success: false, message: error})
-                    console.log("Error occured", error);
                 }
             }) 
         } catch (error) {

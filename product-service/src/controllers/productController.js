@@ -1,7 +1,6 @@
 import productSchema from "../model/product.js"
 
 export function getProducts(req, res) {
-    console.log("I ran getProducts")
     return productSchema.find({})
     .exec()
     .then((data) => res.status(200).json(data) )

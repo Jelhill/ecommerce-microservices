@@ -1,5 +1,8 @@
 import rabbitMQ from "./rabbitMq.js"
 
+/**
+ * A helper function that helps with consuming queued item on rabbitmq messaging queue
+ */
 export const consumerChannel = async (queue) => {
     return new Promise(async (resolve, reject) => {
         try {
