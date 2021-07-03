@@ -35,9 +35,6 @@ export async function sendOrder(req, res) {
     const customerId = await getCustomerId(); //Retrieve Customer Id
     const { _id, amount } = await getProductId(1); //Retrieve Product ID
 
-    console.log("Cus", customer)
-    console.log("Opro", products)
-
     if(!customerId || !_id || amount ) {
         order = {
             customerId: customer._id,
