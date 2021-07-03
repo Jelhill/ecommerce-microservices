@@ -1,6 +1,4 @@
-import rabbitMQ from "../libs/rabbitMq.js"
 import Transaction from "../service/Transaction.js"
-const channel = await rabbitMQ()
 import { consumerChannel } from "../libs/consumerChannel.js"
 
 export function saveTransaction(data) {
