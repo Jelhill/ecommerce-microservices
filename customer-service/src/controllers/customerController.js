@@ -30,7 +30,7 @@ function getProductId(index) {
 //This function will send the customer order to the order-service
 export async function sendOrder(req, res) {
 
-    const order = {}
+    let order = {}
 
     const customerId = await getCustomerId(); //Retrieve Customer Id
     const { _id, amount } = await getProductId(1); //Retrieve Product ID
