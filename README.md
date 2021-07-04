@@ -15,19 +15,26 @@ The customer service and product services has a seeded folder that seeds a singl
     # npm run seeder
     this should be done directly on local host. 
 
+
 To run Application,
     Pull Command: git clone https://github.com/Jelhill/ecommerce-microservices
-    build: docker-compose up --build 
+    
+    Before building the app with docker-compose, First do the following Steps.
+
+    Step 1: Add .env file to the root folder of each service
+    Step 2: Add a mongoDB String to each of .env file. String format is shown below:
+            # MONGO_URI=mongodb+srv://<username>:<password>@cluster0.dfckv.mongodb.net/Youverify?retryWrites=true&w=majority
+    Step 3: Ensure to change the username and password of the string to yours.
+    Step 4: From the customer service, run "npm run seeder" to seed a customer to the database. 
+    Step 5: From the product service, run "npm run seeder" to seed two products to the database
+    Step 6: Then from the root folder where the docker -compose.yml file is located, build the application with the following command from the terminal or bash.
+            # docker-compose up --build 
+            This will start up all the container services and the rabbitmq server.
 
 To Test Application:
     from postman, just trigget the customer endpoint with the below
         endpoint: http://localhost:4000/api/customer/sendOrder
         method: GET
 
-To Connect MongoDB    
-    From each of the services, create a .env file and pass in the MongoDB connection string as seen below. 
-    The string must have a valid username and password.
-    refer to .env.example file for usage in .env file
 
-    MONGO_URI=mongodb+srv://<username>:<password>@cluster0.dfckv.mongodb.net/Youverify?retryWrites=true&w=majority
 

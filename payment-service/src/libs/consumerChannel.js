@@ -16,9 +16,9 @@ export const consumerChannel = async (queue) => {
                     resolve(transaction)
                 }
             })  
+            channel.ack(transaction)
         } catch (error) {
             reject(error)
         }
     })
-
 };

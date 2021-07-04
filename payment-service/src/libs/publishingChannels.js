@@ -29,7 +29,7 @@ export const publishChannel =  (queue, payload) => {
 				reject({success: false, message: error})
 			}
 		}
-
+		
 		if(queue === "order") {
 			try {
 				if(submitQueue) {
