@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server",
     "dev": "nodemon server",
-    "seeder": "node ./src/seeder/customerSeeder.js",
+    "seeder": "node ./src/seeder/customerSeeder.js"
   },
   "author": "",
   "license": "ISC",
