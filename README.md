@@ -8,20 +8,20 @@ However considering the limitation of time available for me to complete this tas
 
 The below are the 4 (four) services and they are hosted on a single github repository.
 
-    # customer-service
-    # order-service
-    # payment-service
-    # product-service
+    # customer-service (Exposed on PORT 4000)
+    # order-service (Exposed on PORT 3001)
+    # payment-service (Exposed on PORT 5000)
+    # product-service (Exposed on PORT 5001)
 
-The customer service and product services has a seeded folder that seeds a single customer and two products respectfully to the database. to run this seeders Go to their services and type:
+The customer service and product services have a seeded folder that seeds a single customer and two products respectfully to the database. to run this seeders Go to their services and type:
     # npm run seeder
-    this should be done directly on local host. 
+    this should be done directly fron localhost. 
 
 
 To run Application,
     Pull Command: git clone https://github.com/Jelhill/ecommerce-microservices
     
-    Before building the app with docker-compose, First do the following Steps.
+    Before building the application with docker-compose, please do the following Steps.
 
     Step 1: Add .env file to the root folder of each service
 

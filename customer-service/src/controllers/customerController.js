@@ -28,7 +28,7 @@ function getCustomerId() {
  */
 function getProductId(index) {
     return axios.get(`${PRODUCT_API_ENDPOINT}/getProducts`)
-    .then((resp) => resp.data[index])
+    .then((resp) => resp.data.data[index])
     .catch(err => {
         logger.error("Unable to get Products from Database", err)
         return err 

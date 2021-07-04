@@ -1,6 +1,7 @@
 import express from "express"
 import productRoute from "./src/route/productRoute.js"
 import logger from "./src/utils/logger.js"
+import morgan from "morgan"
 import database from "./src/db/dev.js"
 
 
@@ -11,6 +12,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => res.status(200).json({message: "`Server` is working fine"}))
 app.use("/api/product", productRoute )
+app.use(morgan("tiny"))
 
 const PORT = process.env.PORT || 5001
 

@@ -1,5 +1,6 @@
 import productSchema from "../model/product.js"
 import baseController from "../utils/baseController.js"
+const { error, success } = baseController
 /**
  * This function gets all the products in the product database
  */

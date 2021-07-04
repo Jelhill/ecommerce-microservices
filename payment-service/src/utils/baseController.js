@@ -2,7 +2,6 @@
 class BaseController {
     success(res, data = [], message = 'success', httpStatus = 200) {
       res.status(httpStatus).send({
-        message,
         data,
       });
     }
