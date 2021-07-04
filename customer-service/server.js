@@ -1,6 +1,8 @@
 import express from "express"
 import customerRoutes from "./src/routes/customerRoutes.js"
 import database from "./src/db/dev.js"
+import logger from "./src/utils/logger.js"
+
 database
 const app = express()
 
@@ -14,5 +16,5 @@ const PORT = process.env.PORT || 4000
 
 
 app.listen(PORT, function() {
-    console.log("customer-service server started on port " + PORT)
+    logger.info("customer-service server started on port " + PORT)
 })

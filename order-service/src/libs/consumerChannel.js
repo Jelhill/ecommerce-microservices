@@ -1,3 +1,4 @@
+import logger from "../utils/logger.js";
 import rabbitMQ from "./rabbitMq.js"
 
 export const consumerChannel = (queue) => {
@@ -10,7 +11,7 @@ export const consumerChannel = (queue) => {
                     const transaction = JSON.parse(payload.content.toString())
                     if(transaction) {
                         resolve({success: true, data: transaction})
-                        console.log(`Received Transaction ${JSON.stringify(transaction)}`);
+                        logger.info(`Received Transaction ${JSON.stringify(transaction)}`);
                     }
                     channel.ack(payload);
                 } catch (error) {

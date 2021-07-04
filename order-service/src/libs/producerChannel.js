@@ -1,3 +1,4 @@
+import logger from "../utils/logger.js";
 import rabbitMQ from "./rabbitMq.js"
 
 export const producerChannel = async (queue, payload) => {
@@ -6,7 +7,7 @@ export const producerChannel = async (queue, payload) => {
 	await channel.sendToQueue(queue, Buffer.from(JSON.stringify(payload)), {
 		persistent: true
 	});
-    console.log(`Order has been sent to the queue ${JSON.stringify(payload)}`);
+    logger.info(`Order has been sent to the queue ${JSON.stringify(payload)}`);
 	return { sucess: true, payload: JSON.stringify(payload)}
 
 };

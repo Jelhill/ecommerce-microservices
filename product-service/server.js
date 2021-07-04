@@ -1,5 +1,6 @@
 import express from "express"
 import productRoute from "./src/route/productRoute.js"
+import logger from "./src/utils/logger.js"
 import database from "./src/db/dev.js"
 
 
@@ -14,5 +15,5 @@ app.use("/api/product", productRoute )
 const PORT = process.env.PORT || 5001
 
 app.listen(PORT, function() {
-    console.log(`product-service server started on port ${PORT}`)
+    logger.info(`product-service server started on port ${PORT}`)
 })

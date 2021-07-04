@@ -1,6 +1,10 @@
 import orderSchema from "../model/orders.js"
 import axios from "axios"
 import  services from "../utils/constants.js"
+import logger from "../utils/logger.js"
+import baseController from "../utils/baseController.js"
+
+const { error, success } = baseController
 const { paymentService } = services
 const PAYMENT_SERVICE_URL = `http://${paymentService.HOST}:${paymentService.PORT}/api/payment`
 
@@ -17,6 +21,7 @@ Order.prototype.saveOrder = function() {
     return new Promise(async (resolve, reject) => {
         const saveData = await orderSchema(this.data).save()
         if(!saveData) {
+            logger.error("Unable to save order")
             return reject("Server Error!!, Unable to save order")
         }   
         resolve(saveData)
@@ -35,8 +40,14 @@ export function processOrder(req, res) {
     .saveOrder()
     .then(async (order) => {
         axios.post(`${PAYMENT_SERVICE_URL}/transaction`, order)
-        .then((data) => res.status(200).json(data.data))
-        .catch((err) => res.status(400).json({success: false, message: "Failed"}))
+        .then((data) => success(res, data.data.data.data))
+        .catch((err) => {
+            logger.error("Failed to connect to Payment Service", err)
+            error(res, {code: 500, success: false, message: "Failed to connect to Payment Service"})
+        })
     })
-    .catch((err) => res.status(500).json({success: false, message: "Server Error"}))
+    .catch((err) => {
+        logger.error("Unable to save order to order database", err)
+        error(res, { code: 400, success: false, message: "Server Error"});
+    })
 }

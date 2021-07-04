@@ -14,7 +14,7 @@ const constants = {
     productService: {
         HOST: "product-service",
         PORT: 5001
-    }
+    },
 }
 
 export default constants

@@ -1,4 +1,5 @@
 import amqp from "amqplib";
+import logger from "../utils/logger";
 
 export default async function connectRabbitMq() {
     try {
@@ -7,8 +8,8 @@ export default async function connectRabbitMq() {
         const channel = await connection.createChannel();
         return channel
     }
-    catch (ex){
-        console.error(ex)
+    catch (err){
+        logger.error("Unable to connect RabbitMQ Server", err)
     }
 
 }

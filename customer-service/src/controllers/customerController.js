@@ -2,10 +2,12 @@ import axios from "axios"
 import CustomerSchema from "../models/customers.js"
 import  services from "../utils/constants.js"
 import { customer, products } from "../data/hardcoded.js"
+import logger from "../utils/logger.js"
+import baseController from "../utils/baseController.js"
 const { orderService, productService } = services
 const ORDER_API_ENDPOINT = `http://${orderService.HOST}:${orderService.PORT}/api/order`
 const PRODUCT_API_ENDPOINT = `http://${productService.HOST}:${productService.PORT}/api/product`
-
+const { error, success} = baseController
 
 /**
  Since there is no data comming from the front end
@@ -15,7 +17,10 @@ function getCustomerId() {
     return CustomerSchema.findOne({})
     .exec()
     .then(data => data._id)
-    .catch((err) => err)
+    .catch(err => {
+        logger.error("Unable to get Customer Data", err)
+        return err 
+    })
 }
 
 /**
@@ -24,10 +29,18 @@ function getCustomerId() {
 function getProductId(index) {
     return axios.get(`${PRODUCT_API_ENDPOINT}/getProducts`)
     .then((resp) => resp.data[index])
-    .catch((err) => err)
+    .catch(err => {
+        logger.error("Unable to get Products from Database", err)
+        return err 
+    })
 }
 
-//This function will send the customer order to the order-service
+
+/**
+    This function will send the customer order to the order-service
+    First it will attemp to retrieve the seeded data from the DB
+    If unsuccessful, it will use hard coded data to populate as user request and send to the order service
+ */
 export async function sendOrder(req, res) {
 
     let order = {}
@@ -42,15 +55,14 @@ export async function sendOrder(req, res) {
             amount: products[1].amount
         }
     }else {
-        order = {
-            customerId, 
-            productId: _id,
-            amount
-        }
+        order = { customerId, productId: _id, amount}
     }
     
 
-    axios.post(`${ORDER_API_ENDPOINT}/receiveOrder`, order, )
-    .then((resp) => res.status(200).json(resp.data))
-    .catch((err) => res.status(500).json({status: false, message: "Server Error!!!!", err}))
+    axios.post(`${ORDER_API_ENDPOINT}/receiveOrder`, order)
+    .then((resp) => success(res, resp.data))
+    .catch((err) => {
+        logger.error("Unable to connect to ORDER-SERVICE", err)
+        error(res, { code: 500, status: false, message: "Unable to connect to ORDER-SERVICE", err })
+    })
 }
