@@ -1,8 +1,10 @@
-The task was to showcase create 4 different services that coule communicate using both RESTFUL based communication and RabbitMQ.
+PLEASE READ
 
-The microservices architechture is more efficient when services are independent thus having different databases is the ideal thing for the purpose of easy maintanance ans scalability.
+The task was to create 4 different services that could communicate using both RESTFUL based communication and RabbitMQ.
 
-However considering the limitation of time available for me to complete this task and due my work schedule and other factors. i used a single database for all the services. 
+The microservices architechture is more efficient when services are independent thus having different databases is the ideal thing for the purpose of easy maintanance and scalability.
+
+However considering the limitation of time available for me to complete this task and due my tight work schedule and other factors. i used a single database for all the services. 
 
 The below are the 4 (four) services and they are hosted on a single github repository.
 
