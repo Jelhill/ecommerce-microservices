@@ -46,15 +46,16 @@ export async function sendOrder(req, res) {
     let order = {}
 
     const customerId = await getCustomerId(); //Retrieve Customer Id
-    const { _id, amount } = await getProductId(1); //Retrieve Product ID
+    const product = await getProductId(1); //Retrieve Product ID
 
-    if(!customerId || !_id || amount ) {
+    if(!customerId || !product ) {
         order = {
             customerId: customer._id,
             productId: products[1]._id,
             amount: products[1].amount
         }
     }else {
+        const { _id, amount } = await getProductId(1)
         order = { customerId, productId: _id, amount}
     }
     
