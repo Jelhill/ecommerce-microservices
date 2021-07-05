@@ -30,14 +30,13 @@ To run Application,
 
     Step 3: Ensure to change the username and password of the string to yours.
 
-    Step 4: From the customer service, run "npm run seeder" to seed a customer to the database. 
-
-    Step 5: From the product service, run "npm run seeder" to seed two products to the database
-
-    Step 6: Then from the root folder where the docker -compose.yml file is located, build the application with the following command from the terminal or bash.
+    Step 4: Then from the root folder where the docker -compose.yml file is located, build the application with the following command from the terminal or bash.
             # docker-compose up --build 
             This will start up all the container services and the rabbitmq server.
 
+    After successful build, before testing the application, the seeded customer and seeded product has to be ran in their respective services. The reason is to separate the seeded data from the application such that data are not seeded every time the application is tested. 
+
+    To seed the customer data and user 
 To Test Application:
     from postman, just trigget the customer endpoint with the below
         endpoint: http://localhost:4000/api/customer/sendOrder

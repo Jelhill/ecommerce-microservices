@@ -39,6 +39,7 @@ export function processOrder(req, res) {
     new Order(req.body)
     .saveOrder()
     .then(async (order) => {
+        
         axios.post(`${PAYMENT_SERVICE_URL}/transaction`, order)
         .then((data) => success(res, data.data.data.data))
         .catch((err) => {

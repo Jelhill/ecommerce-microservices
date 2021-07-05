@@ -13,10 +13,10 @@ const OrderSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    status: {
+    orderStatus: {
         type: String,
         required: true,
-        default: "false"
+        default: "pending"
     }
 })
 
