@@ -42,6 +42,8 @@ To Test Application:
         endpoint: http://localhost:4000/api/customer/sendOrder
         method: GET
 
+After successful build, before testing the application, the seeded customer and seeded product has to be ran in their respective services. The reason is to separate the seeded data from the application such that data are not seeded every time the application is tested. 
+
 IMPORTANT INFO: If you have challenges with running the seeder, i have hardcoded some data that would automatically be called if the data is not fetched from db. This is to ensure ease in testing the code. 
 
 
