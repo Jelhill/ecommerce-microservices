@@ -1,10 +1,11 @@
 import mongoose from "mongoose"
-import keys from "../config/keys.js"
 import dotenv from "dotenv"
 import logger from "../utils/logger.js"
+import  services from "../utils/constants.js"
+
 dotenv.config()
 
-export default mongoose.connect( keys.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, 
+export default mongoose.connect( services.mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true }, 
     (err, client) => {
         if(err) {
             logger.error("Unable to connect to Database ", err)

@@ -15,6 +15,7 @@ const constants = {
         HOST: "product-service",
         PORT: 5001
     },
+    mongoUrl: 'mongodb://mongo:27017/youverify'
 }
 
 export default constants

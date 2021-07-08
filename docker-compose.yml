@@ -1,5 +1,12 @@
 version: "3"
 services:
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports: 
+            - "27017:27017"
+        networks: 
+            - net
     rabbitmq:
         container_name: rabbitmq
         image: rabbitmq:3.8-rc
@@ -20,6 +27,7 @@ services:
             - net
         depends_on:
             - rabbitmq
+            - mongo
     order-service:
         container_name: order-service
         image: order-service
@@ -31,6 +39,7 @@ services:
             - net
         depends_on:
             - rabbitmq
+            - mongo
     payment-service:
         container_name: payment-service
         image: payment-service
@@ -42,6 +51,7 @@ services:
             - net
         depends_on:
             - rabbitmq
+            - mongo
     product-service:
         container_name: product-service
         image: product-service
@@ -53,5 +63,6 @@ services:
             - net
         depends_on:
             - rabbitmq
+            - mongo
 networks: 
     net:
